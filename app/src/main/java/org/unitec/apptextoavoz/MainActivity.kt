@@ -8,6 +8,7 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.util.TimeUtils
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
     // este objeto es el intermediario entre la app y el text to speech
 
     private var TTS:TextToSpeech?=null
+
+    var edad:Int?=null
+    var x:Float?=null
+    val pi=3.14159
+
+
     private val codigo_bajo_peticion=100
 
 
@@ -26,7 +33,26 @@ class MainActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
         setContentView(R.layout.activity_main)
 
         TTS= TextToSpeech(this,this)
+        Log.i("xyz","SE INICIA EL ON CREATE")
+        Log.i("xyz","Tu edad en días es "+TuEdadEnDias(21))
+        Log.i("xyz","Tu edad en días es ${TuEdadEnDias(21)} ya sale bien OwO")
+        var x=2
+        fun funcioncita()={
+            print("una funcioncita con notacion funcional")
+        }
+        fun otrafuncion(x:Int,y:Int)={
+            print("ESTA HACE LA SUMA DE LOS ARGUMENTOS QUE LE PASES OWO ${x+y} DAMN")
+        }
 
+        Log.i("xyz.","MI PRIMER FUNCION CON NOTACION FUNCIONAL ${funcioncita()} YAS QUEEN WORK")
+        otrafuncion(5,4)
+
+        class Ejemplito:(Int)->Int{
+            override fun invoke(p1: Int): Int {
+                TODO("Not yet implemented")
+            }
+
+        }
         Hablar.setOnClickListener {
             val intent = Intent (RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             try {
@@ -88,5 +114,16 @@ class MainActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
                 }
             }
         }
+    }
+
+    fun saludar(mensaje:String){
+        Log.i("HOLA", "MENSAJE DENTRO DE KOTLIN")
+            }
+    fun saludar2(mensaje:String):String{
+        return "MI MENSAJE DE BIENVENIDA"
+    }
+    fun TuEdadEnDias(edad:Int):Int{
+        val diasAnio=365
+        return diasAnio*edad
     }
 }
